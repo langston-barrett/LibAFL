@@ -9,9 +9,9 @@ use which::which;
 
 use crate::cargo_add_rpath;
 
-pub const QEMU_URL: &str = "https://github.com/AFLplusplus/qemu-libafl-bridge";
+pub const QEMU_URL: &str = "https://github.com/langston-barrett/qemu-libafl-bridge";
 pub const QEMU_DIRNAME: &str = "qemu-libafl-bridge";
-pub const QEMU_REVISION: &str = "805b14ffc44999952562e8f219d81c21a4fa50b9";
+pub const QEMU_REVISION: &str = "29a6d1441bc28ccfff883e6f509efe4f67145611";
 
 #[allow(clippy::module_name_repetitions)]
 pub struct BuildResult {
