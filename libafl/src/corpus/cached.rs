@@ -4,10 +4,11 @@ use alloc::{collections::vec_deque::VecDeque, string::String};
 use core::cell::{Ref, RefCell, RefMut};
 use std::path::Path;
 
+use libafl_bolts::serdeany::SerdeAnyMap;
 use serde::{Deserialize, Serialize};
 
 use crate::{
-    Error,
+    Error, HasMetadata as _,
     corpus::{
         Corpus, CorpusId, EnableDisableCorpus, HasTestcase, Testcase,
         inmemory_ondisk::InMemoryOnDiskCorpus, ondisk::OnDiskMetadataFormat,
@@ -42,6 +43,7 @@ where
 
                 if let Ok(mut borrowed) = self.inner.get_from_all(removed)?.try_borrow_mut() {
                     *borrowed.input_mut() = None;
+                    *borrowed.metadata_map_mut() = SerdeAnyMap::new();
                 } else {
                     self.cached_indexes.borrow_mut().push_back(removed);
                     borrowed_num += 1;
