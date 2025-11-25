@@ -40,6 +40,14 @@ use libafl_qemu::{
 };
 use rangemap::RangeMap;
 
+#[cfg(all(not(miri), debug_assertions))]
+#[global_allocator]
+static GLOBAL: scudo::GlobalScudoAllocator = scudo::GlobalScudoAllocator;
+
+#[cfg(all(not(miri), not(debug_assertions)))]
+#[global_allocator]
+static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
+
 #[cfg(feature = "64bit")]
 type GuestReg = u64;
 

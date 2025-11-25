@@ -29,7 +29,9 @@ vergen = { version = "8.2.1", features = ["build", "cargo", "git", "gitcl", "rus
 clap = { version = "4.3.0", features = ["derive", "string"]}
 libafl = { path = "../../libafl/" }
 libafl_qemu = { path = "../../libafl_qemu/", features = ["usermode"] }
+mimalloc = "0.1.48"
 rangemap = { version = "1.0.3" }
+scudo = "0.1.3"
 
 
 

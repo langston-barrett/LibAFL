@@ -17,3 +17,5 @@ codegen-units = 1
 [dependencies]
 libafl = { path = "../../libafl/" }
 libafl_qemu = { path = "../../libafl_qemu/", features = ["arm", "systemmode"] }
+mimalloc = "0.1.48"
+scudo = "0.1.3"

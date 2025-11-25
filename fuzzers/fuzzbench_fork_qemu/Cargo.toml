@@ -17,3 +17,5 @@ libafl_qemu = { path = "../../libafl_qemu/", features = ["x86_64", "usermode"] }
 
 clap = { version = "4.0", features = ["default"] }
 nix = "0.26"
+scudo = "0.1.3"
+mimalloc = "0.1.48"

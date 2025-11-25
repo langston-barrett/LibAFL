@@ -37,6 +37,14 @@ use libafl_qemu::{
 
 pub static mut MAX_INPUT_SIZE: usize = 50;
 
+#[cfg(all(not(miri), debug_assertions))]
+#[global_allocator]
+static GLOBAL: scudo::GlobalScudoAllocator = scudo::GlobalScudoAllocator;
+
+#[cfg(all(not(miri), not(debug_assertions)))]
+#[global_allocator]
+static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
+
 pub fn fuzz() {
     if let Ok(s) = env::var("FUZZ_SIZE") {
         str::parse::<usize>(&s).expect("FUZZ_SIZE was not a number");

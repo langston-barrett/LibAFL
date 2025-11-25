@@ -56,6 +56,14 @@ use libafl_qemu::{
 #[cfg(unix)]
 use nix::{self, unistd::dup};
 
+#[cfg(all(not(miri), debug_assertions))]
+#[global_allocator]
+static GLOBAL: scudo::GlobalScudoAllocator = scudo::GlobalScudoAllocator;
+
+#[cfg(all(not(miri), not(debug_assertions)))]
+#[global_allocator]
+static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
+
 /// The fuzzer main
 pub fn main() {
     // Registry the metadata types used in this fuzzer
